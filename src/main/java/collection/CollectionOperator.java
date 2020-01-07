@@ -1,84 +1,76 @@
 package collection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class CollectionOperator {
-    public List<Integer> getListByInterval(int left, int right) {
-        List<Integer> result = new ArrayList<>();
-        if(left < right) {
-            for(Integer i = left; i <= right; i++) {
-                result.add(i);
-            }
-        }else {
-            for(Integer i = left; i >= right; i--) {
-                result.add(i);
-            }
+public class CollectionOperator<resultList> {
+  public List<Integer> getListByInterval(int left, int right) {
+    List<Integer> resultList = new ArrayList<>();
+    if (left < right) {
+      for (int i = left; i <= right; i++) {
+        resultList.add(i);
+      }
+    } else {
+      for (int i = left; i >= right; i--) {
+        resultList.add(i);
+      }
+    }
+    return resultList;
+  }
+
+  public List<Integer> getEvenListByIntervals(int left, int right) {
+    List<Integer> resultList = new ArrayList<>();
+    if (left < right) {
+      for (int i = left; i <= right; i++) {
+        if (i % 2 == 0) {
+          resultList.add(i);
         }
-        return result;
-    }
-
-    public List<Integer> getEvenListByIntervals(int left, int right) {
-        List<Integer> result = new ArrayList<>();
-        if(left < right) {
-            for(Integer i = left; i <= right; i++) {
-                if(i % 2 == 0) {
-                    result.add(i);
-                }
-            }
-        }else {
-            for(Integer i = left; i >= right; i--) {
-                if(i % 2 == 0) {
-                    result.add(i);
-                }
-            }
+      }
+    } else {
+      for (int i = left; i >= right; i--) {
+        if (i % 2 == 0) {
+          resultList.add(i);
         }
-        return result;
+      }
     }
+    return resultList;
+  }
 
-    public List<Integer> popEvenElments(int[] array) {
-        List<Integer> result = new ArrayList<>();
-        for(Integer item : array) {
-            if(item % 2 == 0) {
-                result.add(item);
-            }
-        }
-        return result;
+  public List<Integer> popEvenElments(int[] array) {
+    List<Integer> resultList = new ArrayList<>();
+    for (int x : array) {
+      if (x % 2 == 0) {
+        resultList.add(x);
+      }
     }
+    return resultList;
+  }
 
-    public int popLastElment(int[] array) {
-        return array[array.length - 1];
+  public int popLastElment(int[] array) {
+    int len = array.length;
+    return array[len - 1];
+  }
+
+  public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
+    List<Integer> resultList = new ArrayList<>();
+    Arrays.sort(firstArray);
+    for (int x : secondArray) {
+      if (Arrays.binarySearch(firstArray,x) >= 0) {
+        resultList.add(x);
+      }
     }
-
-    public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
-
-        List<Integer> result = new ArrayList<>();
-
-        for(Integer itemA : firstArray) {
-            for(Integer itemB : secondArray) {
-                if(itemA == itemB) {
-                    result.add(itemA);
-                }
-            }
-        }
-
-        return result;
-
-    }
+    return resultList;
+  }
 
     public List<Integer> addUncommonElement(Integer[] firstArray, Integer[] secondArray) {
-        List<Integer> result = new ArrayList<>();
-
-        for(Integer item :  firstArray) {
-            result.add(item);
+      List<Integer> resultList = new ArrayList<>(Arrays.asList(firstArray));
+      Arrays.sort(firstArray);
+      for (Integer x : secondArray) {
+        if (Arrays.binarySearch(firstArray, x) < 0) {
+          resultList.add(x);
         }
-
-        for(int i = 0; i < secondArray.length; i++ ) {
-            if(!result.contains(secondArray[i])) {
-                result.add(secondArray[i]);
-            }
-        }
-
-        return result;
+      }
+      return resultList;
     }
 }
