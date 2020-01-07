@@ -1,7 +1,6 @@
 package collection;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Filter {
 
@@ -12,51 +11,39 @@ public class Filter {
     }
 
     public List<Integer> filterEven() {
-
-        List<Integer> result = new ArrayList<>();
-
-        for(Integer item : array){
-            if(item % 2 == 0){
-                result.add(item);
+        List<Integer> evenList = new ArrayList<>();
+        for (Integer x : array) {
+            if (x % 2 == 0) {
+                evenList.add(x);
             }
         }
-
-        return result;
+        return evenList;
     }
 
     public List<Integer> filterMultipleOfThree() {
-        List<Integer> result = new ArrayList<>();
-
-        for(Integer item : array) {
-            if(item % 3 == 0) {
-                result.add(item);
+        List<Integer> tripleList = new ArrayList<>();
+        for (Integer x : array) {
+            if (x % 3 == 0) {
+                tripleList.add(x);
             }
         }
-
-        return result;
+        return tripleList;
     }
 
     public List<Integer> getDifferentElements() {
-        List<Integer> result = new ArrayList<>();
-
-        for (Integer item : array) {
-            if(!result.contains(item)){
-                result.add(item);
-            }
-        }
-        return result;
+        Set<Integer> set = new LinkedHashSet<>(array);
+        List<Integer> resultList = new ArrayList<>(set);
+        return resultList;
     }
 
     public List<Integer> getCommonElements(List<Integer> firstList, List<Integer> secondList) {
-        List<Integer> result = new ArrayList<>();
-
-        for(Integer item : firstList) {
-            if(secondList.contains(item)) {
-                result.add(item);
+        List<Integer> resultList = new ArrayList<>();
+        for (Integer x : firstList) {
+            if (secondList.contains(x)) {
+                resultList.add(x);
             }
         }
-
-        return result;
+        return resultList;
     }
 
 
