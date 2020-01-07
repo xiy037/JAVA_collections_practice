@@ -18,77 +18,50 @@ public class MyMap {
 
     public List<Integer> getTriple() {
         List<Integer> result = new ArrayList<>();
-
-        for(Integer item : array) {
-            result.add(item*3);
+        for (Integer x : array) {
+            result.add(x * 3);
         }
-
         return result;
     }
 
     public List<String> mapLetter() {
         List<String> result = new ArrayList<>();
-
-        for(int i = 0; i < array.size(); i++) {
-            result.add(letterList.get(array.get(i) - 1));
+        for (Integer x : array) {
+            Integer index = x - 1;
+            result.add(letters[index]);
         }
-
         return result;
     }
 
     //将数字转化为对应的英文字母
     public String convertToTitle(int num) {
-
-        StringBuilder str = new StringBuilder();
-
-        while(num > 0){
-            num --;
-            char ch = (char) (num % 26 + 'a');
-            num = num/26;
-            str.append(ch);
+        double quotient = Math.floor((float)(num - 1) / 26);
+        int remainder = (num - 1) % 26;
+        if(quotient == 0) {
+            return letters[remainder];
+        } else {
+            return convertToTitle((int)quotient) + letters[remainder];
         }
-
-        str.reverse();
-        return str.toString();
     }
-
-
-
 
     public List<String> mapLetters() {
         List<String> result = new ArrayList<>();
-
-        for(Integer item : array) {
-            result.add(convertToTitle(item));
+        for (Integer x : array) {
+            result.add(convertToTitle(x));
         }
-
-        System.out.println(result);
         return result;
     }
 
     public List<Integer> sortFromBig() {
-        List<Integer> result = new ArrayList<>();
-
-        for(Integer item : array) {
-            result.add(item);
-        }
-
-        Collections.sort(result);
-        Collections.sort(result, Collections.reverseOrder());
-
-        return result;
+        List<Integer> resultList = new ArrayList<>(array);
+        Collections.sort(resultList, (o1, o2) -> o2 - o1);
+        return resultList;
     }
 
     public List<Integer> sortFromSmall() {
+        List<Integer> resultList = new ArrayList<>(array);
+        Collections.sort(resultList);
+        return resultList;
 
-        List<Integer> result = new ArrayList<>();
-
-        for(Integer item : array) {
-            result.add(item);
-        }
-
-        Collections.sort(result);
-
-        return result;
     }
 }
