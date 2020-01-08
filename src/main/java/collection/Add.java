@@ -50,9 +50,8 @@ public class Add {
 
   public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
     List<Integer> result = new ArrayList<>();
-    for (int i = 0; i < arrayList.size(); i++) {
-      Integer element = arrayList.get(i);
-      Integer resultElement;
+    for (Integer element : arrayList) {
+      int resultElement;
       if (element % 2 == 1) {
         resultElement = 3 * element + 2;
       } else {
@@ -95,7 +94,7 @@ public class Add {
     if (len % 2 == 1) {
       median = evenIndexList.get((len - 1) / 2);
     } else {
-      median = (evenIndexList.get(len / 2) + evenIndexList.get(len / 2 - 1)) / 2;
+      median = (double)(evenIndexList.get(len / 2) + evenIndexList.get(len / 2 - 1)) / 2;
     }
     return median;
   }
@@ -112,7 +111,7 @@ public class Add {
     for (Integer x : evenIndexList) {
       sum += x;
     }
-    average = sum / evenIndexList.size();
+    average = (double)sum / evenIndexList.size();
     return average;
   }
 
@@ -141,7 +140,7 @@ public class Add {
 //      return evenList; //不用set，手动去重写一下
     for (int i = 0; i < evenList.size() - 1; i++) {
       for (int j = i + 1; j < evenList.size(); j++) {
-        if (evenList.get(i) == evenList.get(j)) {
+        if (evenList.get(i).equals(evenList.get(j))) {
           evenList.remove(j);
           j--;
         }
